@@ -26,12 +26,10 @@ var connection = mysql.createConnection({
     password: '',
     database: 'account'
 })
-
 connection.connect(function (err) { // check database connection
     if (err) throw err;
     console.log("Connected!");
 });
-
 connection.query(`SELECT `+s[1]+` FROM accounts WHERE username = 'don' AND password = 'taikono2000'`, (err, res) => {
     return console.log(res);
 });
@@ -53,28 +51,23 @@ app.get('/login', function (req, res) {
     res.sendFile('./login.html', { root: __dirname });
 });
 
-
+/*
 app.post('/regis', function (req, response) {
-    //var username = req.body.username;
-    //var password = req.body.password;
-
-    //var q = `INSERT INTO accounts(username, password) VALUES ('`+username+`','`+password+`')`;
-    //connection.query(q, (err, res) => {});
+    var username = req.body.username;
+    var password = req.body.password;
+    var q = `INSERT INTO accounts(username, password) VALUES ('`+username+`','`+password+`')`;
+    connection.query(q, (err, res) => {});
     response.redirect('/login')
 })
-
 app.post('/auth-login', function (req, response) {
     var username = req.body.username;
     var password = req.body.password;
     //console.log("u ="+ username);
     //console.log("p ="+ password);
-    //var q = `SELECT id FROM accounts WHERE username = '` + username + `' AND password = '` + password + `'`;
-    /*
+    var q = `SELECT id FROM accounts WHERE username = '` + username + `' AND password = '` + password + `'`;
     connection.query(q, (err, res, fields) => {
         console.log(q);
         console.log(res);
-        
-
         if (res.length > 0) {
             req.session.loggedin = true;
             req.session.username = username;
@@ -96,14 +89,8 @@ app.post('/auth-login', function (req, response) {
             //res.end;
         }//res.end;
     })
-    
-    */
-req.session.username = username
-req.session.loggedin = true
-response.redirect('/md')
-
 });
-
+*/
 
 app.get('/md', function (req, res) {
     if (!req.session.loggedin) {
@@ -245,168 +232,114 @@ app.get('/mdon', function (req, res) {
 app.get('/add_20y', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_20y = 1 WHERE username = '` + req.session.username + `'`)
         //alert("Add to cart successfully");
         console.log("Add s_20y to cart successfully u = " + req.session.username)
         //var t = connection.query(`SELECT s_20y FROM accounts WHERE username = '` + req.session.username + `'`)
         //console.log(t)
     } 
-    */
 })
-
 app.get('/buy_20y', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
-        
+    } else {
         connection.query(`UPDATE accounts SET s_20y = 2 WHERE username = '` + req.session.username + `'`)
         //alert("Purchase successfully");
         console.log("buy s_20y to cart successfully u = " + req.session.username)
     }
-    
-    */
 })
-
 app.get('/add_imas', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_imas = 1 WHERE username = '` + req.session.username + `'`)
         //alert("Add to cart successfully");
         console.log("Add s_imas to cart successfully u = " + req.session.username)
-
     }
-    
-    */
 })
-
 app.get('/buy_imas', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-   else {
+    } else {
         connection.query(`UPDATE accounts SET s_imas = 2 WHERE username = '` + req.session.username + `'`)
         //alert("Purchase successfully");
         console.log("buy s_imas to cart successfully u = " + req.session.username)
-
     }
-    */
 })
-
 app.get('/add_miku', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
-
-
+    } else {
         connection.query(`UPDATE accounts SET s_miku = 1 WHERE username = '` + req.session.username + `'`)
         //alert("Add to cart successfully");
         console.log("Add s_miku to cart successfully u = " + req.session.username)
     }
-    */
 })
-
 app.get('/buy_miku', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_miku = 2 WHERE username = '` + req.session.username + `'`)
         //alert("Purchase successfully");
         console.log("buy miku to cart successfully u = " + req.session.username)
     }
-    */
 })
-
 app.get('/add_god', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_god = 1 WHERE username = '` + req.session.username + `'`)
         //alert("Add to cart successfully");
         console.log("Add s_god to cart successfully u = " + req.session.username)
     }
-    */
 })
-
 app.get('/buy_god', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_god = 2 WHERE username = '` + req.session.username + `'`)
         //alert("Purchase successfully");
         console.log("buy s_god to cart successfully u = " + req.session.username)
     }
-    */
 })
-
 app.get('/add_christ', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_christ = 1 WHERE username = '` + req.session.username + `'`)
         //alert("Add to cart successfully");
         console.log("Add s_christ to cart successfully u = " + req.session.username)
     }
-    */
 })
-
 app.get('/buy_christ', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_christ = 2 WHERE username = '` + req.session.username + `'`)
         //alert("Purchase successfully");
         console.log("buy s_christ to cart successfully u = " + req.session.username)
     }
-    */
 })
-
 app.get('/add_touhou', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_touhou = 1 WHERE username = '` + req.session.username + `'`)
         //alert("Add to cart successfully");
         console.log("Add s_miku to cart successfully u = " + req.session.username)
     }
-    */
 })
-
 app.get('/buy_touhou', function (req, res, field) {
     if (!req.session.loggedin) {
         res.sendFile('./login.html', { root: __dirname });
-    } 
-    /*
-    else {
+    } else {
         connection.query(`UPDATE accounts SET s_touhou = 2 WHERE username = '` + req.session.username + `'`)
         //alert("Purchase successfully");
         console.log("buy s_touhou to cart successfully u = " + req.session.username)
     }
-    */
 })
-
+*/
 app.listen(PORT, ()=>{
     console.log(`Serer is running. ${PORT}`)
 })
